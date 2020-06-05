@@ -1,20 +1,48 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 	<head>
-		<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>zwk_vue</title>
-		<link href=/static/css/app.0886ab590733b08e1e7f855414b1bb39.css rel=stylesheet>
+		<meta charset="utf-8">
+		<title></title>
 	</head>
 	<body>
-		<video style="position: absolute; top: 200px;" 
-			src="https://apd-23fa8aea9af44ea33277bfa1f5d6ffca.v.smtcdns.com/om.tc.qq.com/ANpq2aIWaBrhaYek7Rtpb9CACdrvgLgT1p1PiMcC-EqQ/uwMROfz2r5zAoaQXGdGnC2dfJ7xBbC6Xu5OsXbmLfLunH5lr/o0380tperu2.p712.1.mp4?sdtfrom=v1010&guid=e822af3bc86e7a3b2adeb14c3f881805&vkey=61B57AFF43243E2FB55D697E68023F3F9B688AF71B7F1ED18F29433FB10B0C983E37DB1A5B802AF56C7846BE505A160C8D4A78B27AAB5583045091AE1DEE5FC8D14236E8A01748F98812A075B1D2C8A92B952265D91DCFDE95E4EB18F7582F453DDC9E2D705535682848BB81B6BE055805E3C2D7A76CCBBF98105D7DB7C820B7" 
-			controls="controls">
-			您的浏览器不支持 video 标签。
-		</video>
-		<div id=app></div>
-		<script type=text/javascript src="http://webapi.amap.com/maps?v=1.4.7&key=f2d9980c20db7f7f131fb0e709c0fbde"></script>
-		<script src=//webapi.amap.com/ui/1.0/main.js></script>
-		<script type=text/javascript src=/static/js/manifest.0c1cd46d93b12dcd0191.js></script>
-		<script type=text/javascript src=/static/js/vendor.0929f37580b66191e3a5.js></script>
-		<script type=text/javascript src=/static/js/app.6328691b4e777d0139df.js></script>
-		<script type=text/javascript src=/static/js/babel-polyfill.937ccc66b9246f10de33.js></script>
+		<div class="btn1" id="btn">
+			p1显示
+		</div>
+		<div class="btn2" id="btn2">
+			p2显示
+		</div>
+		<div id='p1' class="page1">1</div>
+		<div id='p2' class="page2" style="display: none;">2</div>
 	</body>
+	<script type="text/javascript">
+		document.getElementById('btn').addEventListener('click', function() {
+			document.getElementById('p1').style.display = ''
+			document.getElementById('p2').style.display = 'none'
+		})
+		document.getElementById('btn2').addEventListener('click', function() {
+			document.getElementById('p1').style.display = 'none'
+			document.getElementById('p2').style.display = ''
+		})
+	</script>
+	<style type="text/css">
+		body {
+			width: 100%;
+		}
+		.page1 {
+			height: 2000px;
+			width: 100%;
+		}
+		.page2 {
+			height: 500px;
+			width: 100%;
+		}
+		.btn1 {
+			position: fixed;
+			left: 100px;
+		}
+		.btn2 {
+			position: fixed;
+			left: 200px;
+		}
+	</style>
 </html>
