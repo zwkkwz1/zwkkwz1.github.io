@@ -5,44 +5,15 @@
 		<title></title>
 	</head>
 	<body>
-		<div class="btn1" id="btn">
-			p1显示
-		</div>
-		<div class="btn2" id="btn2">
-			p2显示
-		</div>
-		<div id='p1' class="page1">1</div>
-		<div id='p2' class="page2" style="display: none;">2</div>
+		<video src="blob:https://www.bilibili.com/6a109419-e0b3-49d9-8081-6e9211e99294" controls="controls">
+			您的浏览器不支持 video 标签。
+		</video>
+		<div id=app></div>
+		<script type=text/javascript src="http://webapi.amap.com/maps?v=1.4.7&key=f2d9980c20db7f7f131fb0e709c0fbde"></script>
+		<script src=//webapi.amap.com/ui/1.0/main.js></script>
+		<script type=text/javascript src=/static/js/manifest.0c1cd46d93b12dcd0191.js></script>
+		<script type=text/javascript src=/static/js/vendor.0929f37580b66191e3a5.js></script>
+		<script type=text/javascript src=/static/js/app.6328691b4e777d0139df.js></script>
+		<script type=text/javascript src=/static/js/babel-polyfill.937ccc66b9246f10de33.js></script>
 	</body>
-	<script type="text/javascript">
-		document.getElementById('btn').addEventListener('click', function() {
-			document.getElementById('p1').style.display = ''
-			document.getElementById('p2').style.display = 'none'
-		})
-		document.getElementById('btn2').addEventListener('click', function() {
-			document.getElementById('p1').style.display = 'none'
-			document.getElementById('p2').style.display = ''
-		})
-	</script>
-	<style type="text/css">
-		body {
-			width: 100%;
-		}
-		.page1 {
-			height: 2000px;
-			width: 100%;
-		}
-		.page2 {
-			height: 500px;
-			width: 100%;
-		}
-		.btn1 {
-			position: fixed;
-			left: 100px;
-		}
-		.btn2 {
-			position: fixed;
-			left: 200px;
-		}
-	</style>
 </html>
