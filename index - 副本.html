@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <style type="text/css">
+    body {
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .bg-default {
+      position: absolute;
+      width: 100%;
+      left: 0;
+    }
+
+    .img-default {
+      z-index: 1100;
+      position: absolute;
+    }
+    
+    .img-pos {
+      width: 515px;
+      height: 750px;
+      position: absolute;
+    }
+
+    .zm {
+      transform: rotateY(180deg);
+      transition: transform 1s ease-in-out;
+    }
+
+    .bm {
+      transform: rotateY(180deg);
+      transition: transform 1s ease-in-out;
+      z-index: 2;
+    }
+
+    button {
+      position: absolute;
+      left: 600px;
+    }
+
+    .eyes {
+      background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0 / 60%) 66%, #050404 80%, #000);
+      width: 100%;
+      position: absolute;
+      /* height: 400px; */
+      z-index: 1000;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      transition: all 1s ease-in-out;
+    }
+    
+    .bg {
+      top: 0;
+      height: 100vh;
+      background-color: #000;
+      z-index: 100;
+    }
+    .bg-top {
+      /* background-image: linear-gradient(#000 626.5px, #ff00 626.5px, #ff00 1116.5px, #000 1116.5px, #000); */
+      background-color: #000;
+      z-index: 999;
+      top: 0;
+      transition: all 1s ease-in-out;
+    }
+    .bg-bottom {
+      background-color: #000;
+      z-index: 999;
+      bottom: 0;
+      transition: all 1s ease-in-out;
+    }
+    /* .bg-map {
+      z-index: 990;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      transition: height 1s ease-in-out;
+      background-image: url(asset/map.jpg);
+      overflow: hidden;
+    } */
+    .bg-map {
+      z-index: 190;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background-image: url(./asset/map.jpg);
+    }
+    /* 开始动画 */
+    .leaf {
+      width: 100%;
+      height: 200px;
+      z-index: 200;
+      position: absolute;
+      animation-name: sway;
+      animation-duration: 2s;
+      animation-iteration-count: infinite; /* 动画无数次播放*/
+      animation-direction: alternate; /* 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放 */
+      animation-timing-function: ease-out;
+    }
+    @keyframes sway {
+      0% {top: -40px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {top: 0;} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {top: 0;}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes sway {
+      0% {top: -40px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {top: 0;} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {top: 0;}
+    }
+
+    .angel {
+      position: absolute;
+      z-index: 200;
+      width: 150px;
+      height: 150px;
+      bottom: 200px;
+      left: 200px;
+      animation-name: flyone,flytow,flydistant;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-delay: 7.4s;
+      /* animation-timing-function: ease-in-out; */
+    }
+    @keyframes flyone {
+      0% {left: 200px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      50% {left: 600px;}
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {left: 300px;}
+    }
+    @keyframes flytow {
+      0% {bottom: 200px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      50% {bottom: 450px;}
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {bottom: 600px;}
+    }
+    @keyframes flydistant {
+      0% {width: 150px; height: 150px;}
+      100% {width: 70px; height: 70px;}
+    }
+
+    .radar-box{
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      z-index: 1100;
+      height: 100%;
+      /* background: rgb(0 0 0 / 40%); */
+      /* display: none; */
+    }
+    .radar-begin {
+      bottom: 30%;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    /* 雷达 */
+    .radar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 100%;
+      z-index: 1100;
+      transform: rotate(0deg);
+      animation-name: radar;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes radar {
+      0% {transform: rotate(0deg);}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {transform: rotate(-180deg);} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {transform: rotate(-360deg);}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes sway {
+      0% {transform: rotate(0deg);}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {transform: rotate(-180deg);} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {transform: rotate(-360deg);}
+    }
+  </style>
+  <body>
+    <!-- 开头背景和睁眼效果 -->
+    <div id='bgTop' class="bg-top bg-default"></div>
+    <div id="eyes" class="eyes"></div>
+    <div id='bgBottom' class="bg-bottom bg-default"></div>
+    <!-- <div id="bg" class="bg bg-default"></div> -->
+    <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
+    <img src='./asset/map.jpg' class="bg-map" onload="mapOnload()">
+
+    <!-- 开始动画 -->
+    <!-- <img src='./asset/839af78322450ea0eb6dbb1d19889d831862804f.png' class="leaf" />
+    <img src="./asset/ag.jpg" alt="" class="angel" /> -->
+    <!-- <div class="forest"></div> -->
+
+    <!-- 雷达开始按钮 -->
+    <!-- <img src="./asset/radarBeginImg.png" class="radar-begin img-default" /> -->
+
+    <!-- 雷达 -->
+    <div class="radar-box" id='radarBox'></div>
+    <!-- <div class="radar-box" id='radarBox'>
+      <img src="./asset/radar.png" alt="" class="radar">
+    </div> -->
+    
+    <!-- 翻转效果 -->
+    <img id="bm"
+      src="asset/src=http___i3.img.969g.com_news_imgx2014_05_09_296_165542_fe7f4.jpg&refer=http___i3.img.969g.jpg"
+      class="bm img-pos" />
+    <img id='zm' src="./asset/91-160P2115941.jpg" class="zm img-pos" />
+    <button type="button" onclick="handleTranstion()">开始翻转1</button>
+    <button type="button" onclick="handleTranstionBack()" style="top: 100px;">转回去</button>
+  </body>
+  <script type="text/javascript">
+    let z = 10
+    const screenW = document.body.offsetWidth
+    const screenH = document.body.offsetHeight
+    let radarImg = null
+    let radarBeginImg = null
+    let imgInDom = {
+      radarBegin: false,
+      radar: false
+    }
+    // 开始雷达转动
+    function radarBegin() {
+      radarBeginImg.style.display = 'none'
+      if (!imgInDom.radar) {
+        imgInDom.radar = true
+        const radarBoxDom = document.getElementById('radarBox')
+        radarBoxDom.style.background = 'rgb(0 0 0 / 40%)'
+        // const radar = '<img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/1bd295afa23047530e62cbb4077aa8e0.png" alt="" class="radar">'
+        // const radar = radarImg
+        radarBoxDom.appendChild(radarImg)
+      } else {
+        const radarBoxDom = document.getElementById('radarBox')
+        radarBoxDom.style.display = 'inherit'
+      }
+    }
+    // 添加雷达转动开始按钮
+    function addRadarBeginImg() {
+      if (!imgInDom.radarBegin) {
+        imgInDom.radarBegin = true
+        radarBeginImg.onclick = radarBegin
+        document.body.appendChild(radarBeginImg)
+      }
+      // radarBeginImg = null
+    }
+
+    // 预加载图片
+    function loadImg(url, classList) {
+      return new Promise(function(reslove, reject) {
+        let img = document.createElement('img')
+        img.src = url
+        if (classList && classList.length > 0) {
+          classList.forEach(element => {
+            img.classList.add(element)
+          })
+        }
+        img.onload = function(e) {
+          console.log(e)
+          reslove(img)
+          img.onload = null
+        }
+      })
+    }
+    
+    // 眨眼结束。眼睛睁开
+    function openEyes() {
+      const eyes = document.getElementById('eyes')
+      const bgBottom = document.getElementById('bgBottom')
+      const bgTop = document.getElementById('bgTop')
+      // eyes.style.transition = 'none'
+      eyes.style.transitionDuration = bgBottom.style.transitionDuration = bgTop.style.transitionDuration = '1s'
+      eyes.style.opacity = 0 // 眼睛完全睁开
+      bgTop.style.opacity = bgBottom.style.opacity = 0
+      // 上下遮挡打开
+      // setTimeout(() => {
+      //   bgTop.style.height = bgBottom.style.height = 0
+      //   bgTop = bgBottom = null
+      // }, 1000)
+      setTimeout(() => {
+        // radarBegin()
+        addRadarBeginImg()
+      }, 1200)
+    }
+    // 眨眼
+    function mapOnload(e) {
+      // console.log(e)
+      loadImg('./asset/radar.png', ['radar']).then(function(res) {
+        // console.log(res)
+        radarImg = res
+      })
+      loadImg('./asset/radarBeginImg.png', ['radar-begin', 'img-default']).then(function(res) {
+        // console.log(res)
+        radarBeginImg = res
+      })
+    }
+    function wink(eyesH, time = 1, isEnd = false) {
+      const eyes = document.getElementById('eyes')
+      // const bgMap = document.getElementById('bgMap')
+      // bgMap.style.height = eyesH + 'px'
+      const bgHeight = screenH / 2 - eyesH / 2
+      const bgBottom = document.getElementById('bgBottom')
+      const bgTop = document.getElementById('bgTop')
+      eyes.style.transitionDuration = bgBottom.style.transitionDuration = bgTop.style.transitionDuration = time + 's'
+      
+      eyes.style.height = eyesH + 'px'
+      bgBottom.style.height = bgTop.style.height = bgHeight + 'px'
+      if (isEnd) {
+        setTimeout(function() {
+          openEyes()
+        }, 1800)
+      }
+    }
+    wink(0)
+    // window.requestAnimationFrame(() => {
+    //   wink(screenW / 5)
+    // })
+    setTimeout(function() {
+      wink(screenW / 5)
+    }, 20)
+
+    let i = 0
+    const winkInterval = setInterval(function() {
+      i++
+      let h = 10
+      let isEnd = false
+      if (i === 2) {
+        h = screenW / 4
+      } else if (i >= 4) {
+        h = screenW / 3
+        if (radarImg && radarBeginImg) {
+          isEnd = true
+          clearInterval(winkInterval)
+        }
+      }
+      // 开始扫描按钮图片 和雷达图片要在睁眼前加载好
+      wink(h, 1 + i * 0.2, isEnd)
+    }, 1200 + i * 200)
+    
+    // 睁眼效果
+    // function wink() {
+    //   const eyes = document.getElementById('eyes')
+    //   // eyes.style.backgroundImage = 
+    // }
+
+    function handleTranstion() {
+      const zm = document.getElementById('zm')
+      const bm = document.getElementById('bm')
+      zm.style.transform = 'rotateY(90deg)'
+      bm.style.transform = 'rotateY(90deg)'
+      z += 2
+      setTimeout(() => {
+        // bm.style.display = 'none'
+        zm.style.zIndex = z
+        bm.style.zIndex = 0
+        zm.style.transform = 'rotateY(0deg)'
+        bm.style.transform = 'rotateY(0deg)'
+      }, 1000)
+    }
+
+    function handleTranstionBack() {
+      const zm = document.getElementById('zm')
+      const bm = document.getElementById('bm')
+      zm.style.transform = 'rotateY(90deg)'
+      bm.style.transform = 'rotateY(90deg)'
+      z += 2
+      setTimeout(() => {
+        bm.style.zIndex = z
+        // bm.style.display = 'inherit'
+        zm.style.zIndex = 0
+        setTimeout(() => {
+          zm.style.transform = 'rotateY(180deg)'
+          bm.style.transform = 'rotateY(180deg)'
+        }, 100)
+      }, 1000)
+    }
+  </script>
+</html>
