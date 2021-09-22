@@ -88,7 +88,7 @@
       margin: auto;
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      background-image: url('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png');
+      background-image: url('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png');
     } */
     .eyes-border {
       height: 100%;
@@ -271,7 +271,7 @@
       z-index: 1100;
       transform: rotate(0deg);
       animation-name: radar;
-      animation-duration: 5s;
+      animation-duration: 3s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
@@ -285,7 +285,7 @@
       100% {transform: rotate(-360deg);}
     }
     /* Safari 与 Chrome */
-    @-webkit-keyframes sway {
+    @-webkit-keyframes radar {
       0% {transform: rotate(0deg);}
       /* 20% {top: -20px;}
       45% {top: -2px;} */
@@ -294,6 +294,42 @@
       95% {top: -38px;} */
       100% {transform: rotate(-360deg);}
     }
+
+    .pos {
+      width: 0.1rem;
+      animation-name: jump;
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    @keyframes jump {
+      0% {transform: rotateY(0deg);}
+      30% {transform: rotateY(-360deg);}
+      100% {transform: rotateY(-360deg);}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes jump {
+      0% {transform: rotateY(0deg);}
+      30% {transform: rotateY(-360deg);}
+      100% {transform: rotateY(-360deg);}
+    }
+
+    .card-back {
+      width: 0.1rem;
+      animation-name: toBig;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      /* animation-iteration-count: infinite; */
+    }
+    @keyframes toBig {
+      0% {width: 0.1rem;}
+      100% {width: 0.7rem;}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes toBig {
+      0% {width: 0.1rem;}
+      100% {width: 0.1rem;}
+    }
   </style>
   <body>
     <!-- 开头背景和睁眼效果 -->
@@ -301,13 +337,16 @@
     <div id='bgTop' class="bg-top bg-default"></div>
     <div id="eyes" class="eyes-box">
       <!-- <div class="eyes"></div>
-      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png" class="bg-map" onload="mapOnload()">
+      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png" class="bg-map" onload="mapOnload()">
       <div class="eyes-border"></div> -->
     </div>
     <div id='bgBottom' class="bg-bottom bg-default"></div>
     <!-- <div id="bg" class="bg bg-default"></div> -->
     <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
     <!-- <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()"> -->
+
+    <!-- 定位按钮 -->
+    <!-- <img src="./asset/pos.png" alt="" class="pos img-default"> -->
 
     <!-- 开始动画 -->
     <!-- <img src='./asset/839af78322450ea0eb6dbb1d19889d831862804f.png' class="leaf" />
@@ -333,28 +372,93 @@
   </body>
   <script type="text/javascript">
     let z = 10
-    let screenW = document.body.offsetWidth
-    let screenH = document.body.offsetHeight
+    const screenW = document.body.offsetWidth
+    const screenH = document.body.offsetHeight
     let radarImg = null
     let radarBeginImg = null
+    let cardImg1 = null
+    let posImg = null
     let imgInDom = {
       radarBegin: false,
-      radar: false
+      radar: false,
+      posImg: false
+    }
+    const cardPos = [
+      {
+        left: '0.46rem', 
+        top: '23%'
+      },
+      {
+        left: '0.1rem',
+        top: '46%'
+      },
+      {
+        left: '0.68rem',
+        top: '49%'
+      },
+      {
+        left: '0.4rem',
+        top: '65%'
+      },
+      {
+        left: '0.60rem',
+        top: '80%'
+      }
+    ]
+    const cardBackImg = [
+      'http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/54be9414b115adb73fef09b0c5ddd603.png',
+      'http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/fb1c30f9937df3ad00702cb043417d04.png',
+      'http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/4945471b2bfa5790e8d2aba70c588734.png',
+      'http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/9738604d09188d02be091b99732c2d90.png',
+      'http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/9cbb7a7f60dbf0f2978167f5d2382d87.png'
+    ]
+    const currentCardPos = {}
+    // 点击选择卡牌
+    function randomCard() {
+      if (cardBackImg.length === 0) {
+        // TODO. 所有卡牌都被抽走的情况
+      }
+      const index = Math.round(Math.random() * (cardBackImg.length - 1))
+      const url = cardBackImg.splice(index, 1)[0]
+    }
+    // 添加定位按钮
+    function addPosBtn() {
+      if (cardPos.length === 0) {
+        // TODO. 所有卡牌都被抽走的情况
+      } 
+      const index = Math.round(Math.random() * (cardPos.length - 1))
+      currentCardPos = cardPos.splice(index, 1)[0]
+      if (!imgInDom.posImg) {
+        imgInDom.posImg = true
+        posImg.onclick = function() {
+          posImg.style.display = 'none'
+        }
+        document.body.appendChild(posImg)
+      } else {
+        posImg.style.display = 'inherit'
+      }
+      posImg.style.left = currentCardPos.left
+      posImg.style.top = currentCardPos.top
     }
     // 开始雷达转动
     function radarBegin() {
       radarBeginImg.style.display = 'none'
+      const radarBoxDom = document.getElementById('radarBox')
+      // 添加雷达
       if (!imgInDom.radar) {
         imgInDom.radar = true
-        const radarBoxDom = document.getElementById('radarBox')
         radarBoxDom.style.background = 'rgb(0 0 0 / 40%)'
         // const radar = '<img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/1bd295afa23047530e62cbb4077aa8e0.png" alt="" class="radar">'
         // const radar = radarImg
         radarBoxDom.appendChild(radarImg)
       } else {
-        const radarBoxDom = document.getElementById('radarBox')
         radarBoxDom.style.display = 'inherit'
       }
+
+      setTimeout(function() {
+        radarBoxDom.style.display = 'none'
+        addPosBtn()
+      }, 3000)
     }
     // 添加雷达转动开始按钮
     function addRadarBeginImg() {
@@ -362,6 +466,8 @@
         imgInDom.radarBegin = true
         radarBeginImg.onclick = radarBegin
         document.body.appendChild(radarBeginImg)
+      } else {
+        imgInDom.style.display = 'inherit'
       }
       // radarBeginImg = null
     }
@@ -383,7 +489,22 @@
       setTimeout(() => {
         // radarBegin()
         addRadarBeginImg()
-      }, 1200)
+      }, 200)
+    }
+    function otherImgOnload() {
+      cardBackImg.forEach(function(url) {
+        loadImg(url, ['card-back', 'img-default']).then(function(res) {
+          // TODO, 卡背加载好之后应该怎么样
+          // TODO。雷达应该等到卡背全被加载好才能停
+        })
+      })
+    }
+    function posOnload() {
+      loadImg('./asset/pos.png', ['pos', 'img-default']).then(function(res) {
+        // console.log(res)
+        posImg = res
+        otherImgOnload()
+      })
     }
     // 眨眼
     function mapOnload() {
@@ -391,6 +512,7 @@
       loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/1bd295afa23047530e62cbb4077aa8e0.png', ['radar']).then(function(res) {
         // console.log(res)
         radarImg = res
+        posOnload()
       })
       loadImg('./asset/radarBeginImg.png', ['radar-begin', 'img-default']).then(function(res) {
         // console.log(res)
@@ -408,12 +530,12 @@
       }
       // const bgMap = document.getElementById('bgMap')
       // bgMap.style.height = eyesH + 'px'
-      const bgHeight = screenH / 2 - eyesH / 2
+      const bgHeight = screenH / 2 - eyesH / 2 * screenW // 1rem是screenW px。(eyesH / 2 * screenW)将(eyesH / 2)rem转成px
       const bgBottom = document.getElementById('bgBottom')
       const bgTop = document.getElementById('bgTop')
       eyes.style.transitionDuration = bgBottom.style.transitionDuration = bgTop.style.transitionDuration = time + 's'
       
-      eyes.style.height = eyesH + 'px'
+      eyes.style.height = eyesH + 'rem'
       bgBottom.style.height = bgTop.style.height = bgHeight + 'px'
       if (isEnd) {
         setTimeout(function() {
@@ -426,20 +548,22 @@
       let r = wink(0)
       if (r) {
         setTimeout(function() {
-          wink(screenW / 5)
+          wink(0.2)
         }, 20)
         let i = 0
         function winkLoop() {
           const winkInterval = setTimeout(function() {
             i++
-            let h = 50
+            let h = 0.05
             let isEnd = false
             if (i & 1) {
-              h = 50
+              h = 0.05
             } else if (i === 2) {
-              h = screenW / 4
+              // h = screenW / 4
+              h = 0.25
             } else if (i >= 4) {
-              h = screenW / 3
+              // h = screenW / 3
+              h = 0.33
               if (radarImg && radarBeginImg) {
                 isEnd = true
                 // clearInterval(winkInterval)
@@ -462,7 +586,7 @@
       // }, 8000)
       winkBegin()
       document.html
-      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png', ['bg-map']).then(function(res) {
+      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png', ['bg-map']).then(function(res) {
         // console.log(res)
         // mapImg = res
         // res.style.height = screenH + 'px'
