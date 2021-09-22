@@ -48,7 +48,7 @@
       background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0 / 60%) 66%, #050404 80%, #000);
       width: 100%;
       position: absolute;
-      /* height: 400px; */
+      height: 0;
       z-index: 1000;
       left: 0;
       right: 0;
@@ -97,7 +97,7 @@
       top: 0;
       left: 0;
       bottom: 0;
-      background-image: url(./asset/map.jpg);
+      /* background-image: url(./asset/map.jpg); */
     }
     /* 开始动画 */
     .leaf {
@@ -225,7 +225,7 @@
     <div id='bgBottom' class="bg-bottom bg-default"></div>
     <!-- <div id="bg" class="bg bg-default"></div> -->
     <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
-    <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()">
+    <!-- <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()"> -->
 
     <!-- 开始动画 -->
     <!-- <img src='./asset/839af78322450ea0eb6dbb1d19889d831862804f.png' class="leaf" />
@@ -242,12 +242,12 @@
     </div> -->
     
     <!-- 翻转效果 -->
-    <img id="bm"
+    <!-- <img id="bm"
       src="asset/src=http___i3.img.969g.com_news_imgx2014_05_09_296_165542_fe7f4.jpg&refer=http___i3.img.969g.jpg"
       class="bm img-pos" />
     <img id='zm' src="./asset/91-160P2115941.jpg" class="zm img-pos" />
     <button type="button" onclick="handleTranstion()">开始翻转1</button>
-    <button type="button" onclick="handleTranstionBack()" style="top: 100px;">转回去</button>
+    <button type="button" onclick="handleTranstionBack()" style="top: 100px;">转回去</button> -->
   </body>
   <script type="text/javascript">
     let z = 10
@@ -283,24 +283,6 @@
       }
       // radarBeginImg = null
     }
-
-    // 预加载图片
-    function loadImg(url, classList) {
-      return new Promise(function(reslove, reject) {
-        let img = document.createElement('img')
-        img.src = url
-        if (classList && classList.length > 0) {
-          classList.forEach(element => {
-            img.classList.add(element)
-          })
-        }
-        img.onload = function(e) {
-          console.log(e)
-          reslove(img)
-          img.onload = null
-        }
-      })
-    }
     
     // 眨眼结束。眼睛睁开
     function openEyes() {
@@ -322,9 +304,9 @@
       }, 1200)
     }
     // 眨眼
-    function mapOnload(e) {
+    function mapOnload() {
       // console.log(e)
-      loadImg('./asset/radar.png', ['radar']).then(function(res) {
+      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/1bd295afa23047530e62cbb4077aa8e0.png', ['radar']).then(function(res) {
         // console.log(res)
         radarImg = res
       })
@@ -335,6 +317,12 @@
     }
     function wink(eyesH, time = 1, isEnd = false) {
       const eyes = document.getElementById('eyes')
+      if (!eyes) {
+        window.requestAnimationFrame(function() {
+          winkBegin()
+        })
+        return false
+      }
       // const bgMap = document.getElementById('bgMap')
       // bgMap.style.height = eyesH + 'px'
       const bgHeight = screenH / 2 - eyesH / 2
@@ -349,32 +337,41 @@
           openEyes()
         }, 1800)
       }
+      return true
     }
-    wink(0)
-    // window.requestAnimationFrame(() => {
-    //   wink(screenW / 5)
-    // })
-    setTimeout(function() {
-      wink(screenW / 5)
-    }, 20)
-
-    let i = 0
-    const winkInterval = setInterval(function() {
-      i++
-      let h = 10
-      let isEnd = false
-      if (i === 2) {
-        h = screenW / 4
-      } else if (i >= 4) {
-        h = screenW / 3
-        if (radarImg && radarBeginImg) {
-          isEnd = true
-          clearInterval(winkInterval)
-        }
+    function winkBegin() {
+      let r = wink(0)
+      if (r) {
+        setTimeout(function() {
+          wink(screenW / 5)
+        }, 20)
+        let i = 0
+        const winkInterval = setInterval(function() {
+          i++
+          let h = 10
+          let isEnd = false
+          if (i === 2) {
+            h = screenW / 4
+          } else if (i >= 4) {
+            h = screenW / 3
+            if (radarImg && radarBeginImg) {
+              isEnd = true
+              clearInterval(winkInterval)
+            }
+          }
+          // 开始扫描按钮图片 和雷达图片要在睁眼前加载好
+          wink(h, 1 + i * 0.2, isEnd)
+        }, 1200 + i * 200)
       }
-      // 开始扫描按钮图片 和雷达图片要在睁眼前加载好
-      wink(h, 1 + i * 0.2, isEnd)
-    }, 1200 + i * 200)
+    }
+    window.onload = function(){
+      winkBegin()
+      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg', ['bg-map']).then(function(res) {
+        // console.log(res)
+        document.body.appendChild(res)
+        mapOnload()
+      })
+    }
     
     // 睁眼效果
     // function wink() {
@@ -412,6 +409,24 @@
           bm.style.transform = 'rotateY(180deg)'
         }, 100)
       }, 1000)
+    }
+
+    // 预加载图片
+    function loadImg(url, classList) {
+      return new Promise(function(reslove, reject) {
+        let img = document.createElement('img')
+        img.src = url
+        if (classList && classList.length > 0) {
+          classList.forEach(element => {
+            img.classList.add(element)
+          })
+        }
+        img.onload = function(e) {
+          console.log(e)
+          reslove(img)
+          img.onload = null
+        }
+      })
     }
   </script>
 </html>
