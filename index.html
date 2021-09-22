@@ -5,9 +5,13 @@
     <title></title>
   </head>
   <style type="text/css">
+    html {
+      height: 100%;
+      font-size: 100vw;
+    }
     body {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       margin: 0;
     }
     
@@ -44,9 +48,9 @@
       left: 600px;
     }
 
-    .eyes {
+    .eyes-box {
       /* background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0 / 60%) 66%, #050404 80%, #000); */
-      background-image: radial-gradient(rgb(255 0 0 / 0%) 20%, rgb(0 0 0) 46%);
+      background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0) 80%);
       width: 100%;
       position: absolute;
       height: 0;
@@ -56,12 +60,81 @@
       top: 0;
       bottom: 0;
       margin: auto;
+      overflow: hidden;
       transition: all 1s ease-in-out;
+      /* animation-name: wink;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out; */
+    }
+    /* .eyes-box:before {
+      content: '';
+      background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0) 80%);
+      height: 100%;
+      z-index: 9999;
+      position: absolute;
+      width: 100%;
+    }
+    .eyes-box:after {
+      content: '';
+      z-index: 190;
+      width: 100%;
+      height: 100%;
+      position: f;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png');
+    } */
+    .eyes-border {
+      height: 100%;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      width: 100%;
+      position: fixed;
+      z-index: 111111111;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .eyes {
+      background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0) 80%);
+      height: 100%;
+      z-index: 9999;
+      position: absolute;
+      width: 100%;
+      box-shadow: 0 0 1px #000;
+    }
+
+    @keyframes wink {
+      0% {height: 20px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {top: 0;} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {height: 0.5rem;}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes wink {
+      0% {height: 20px;}
+      /* 20% {top: -20px;}
+      45% {top: -2px;} */
+      /* 50% {top: 0;} */
+      /* 70% {top: -20px;}
+      95% {top: -38px;} */
+      100% {height: 0.5rem;}
     }
     
     .bg {
       top: 0;
-      height: 100vh;
+      height: 100%;
       background-color: #000;
       z-index: 100;
     }
@@ -71,12 +144,14 @@
       z-index: 999;
       top: 0;
       transition: all 1s ease-in-out;
+      box-shadow: 0 2px 0 #000;
     }
     .bg-bottom {
       background-color: #000;
       z-index: 999;
       bottom: 0;
       transition: all 1s ease-in-out;
+      box-shadow: 0 -2px 0 #000;
     }
     /* .bg-map {
       z-index: 990;
@@ -93,11 +168,12 @@
     .bg-map {
       z-index: 190;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
+      margin: auto;
       /* background-image: url(./asset/map.jpg); */
     }
     /* 开始动画 */
@@ -221,8 +297,13 @@
   </style>
   <body>
     <!-- 开头背景和睁眼效果 -->
+    <div id='bg' class='bg bg-default'></div>
     <div id='bgTop' class="bg-top bg-default"></div>
-    <div id="eyes" class="eyes"></div>
+    <div id="eyes" class="eyes-box">
+      <!-- <div class="eyes"></div>
+      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png" class="bg-map" onload="mapOnload()">
+      <div class="eyes-border"></div> -->
+    </div>
     <div id='bgBottom' class="bg-bottom bg-default"></div>
     <!-- <div id="bg" class="bg bg-default"></div> -->
     <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
@@ -252,8 +333,8 @@
   </body>
   <script type="text/javascript">
     let z = 10
-    const screenW = document.body.offsetWidth
-    const screenH = document.body.offsetHeight
+    let screenW = document.body.offsetWidth
+    let screenH = document.body.offsetHeight
     let radarImg = null
     let radarBeginImg = null
     let imgInDom = {
@@ -351,10 +432,10 @@
         function winkLoop() {
           const winkInterval = setTimeout(function() {
             i++
-            let h = 10
+            let h = 50
             let isEnd = false
             if (i & 1) {
-              h = 10
+              h = 50
             } else if (i === 2) {
               h = screenW / 4
             } else if (i >= 4) {
@@ -375,9 +456,17 @@
       }
     }
     window.onload = function(){
+      // setTimeout(function() {
+      //   const eyes = document.getElementById('eyes')
+      //   eyes.style.animationIterationCount = 0
+      // }, 8000)
       winkBegin()
-      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg', ['bg-map']).then(function(res) {
+      document.html
+      loadImg('http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/8deb2b6228d97887d4092af2a3bc0fd8.png', ['bg-map']).then(function(res) {
         // console.log(res)
+        // mapImg = res
+        // res.style.height = screenH + 'px'
+        // document.getElementById('eyes').appendChild(res)
         document.body.appendChild(res)
         mapOnload()
       })
