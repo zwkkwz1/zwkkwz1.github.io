@@ -318,6 +318,7 @@
     function wink(eyesH, time = 1, isEnd = false) {
       const eyes = document.getElementById('eyes')
       if (!eyes) {
+        alert('eyes dom不存在！')
         window.requestAnimationFrame(function() {
           winkBegin()
         })
@@ -346,22 +347,30 @@
           wink(screenW / 5)
         }, 20)
         let i = 0
-        const winkInterval = setInterval(function() {
-          i++
-          let h = 10
-          let isEnd = false
-          if (i === 2) {
-            h = screenW / 4
-          } else if (i >= 4) {
-            h = screenW / 3
-            if (radarImg && radarBeginImg) {
-              isEnd = true
-              clearInterval(winkInterval)
+        function winkLoop() {
+          const winkInterval = setTimeout(function() {
+            i++
+            let h = 10
+            let isEnd = false
+            if (i & 1) {
+              h = 10
+            } else if (i === 2) {
+              h = screenW / 4
+            } else if (i >= 4) {
+              h = screenW / 3
+              if (radarImg && radarBeginImg) {
+                isEnd = true
+                // clearInterval(winkInterval)
+              }
             }
-          }
-          // 开始扫描按钮图片 和雷达图片要在睁眼前加载好
-          wink(h, 1 + i * 0.2, isEnd)
-        }, 1200 + i * 200)
+            // 开始扫描按钮图片 和雷达图片要在睁眼前加载好
+            wink(h, 0.8 + i * 0.2, isEnd)
+            if (!isEnd) {
+              winkLoop()
+            }
+          }, 1000 + i * 200)
+        }
+        winkLoop()
       }
     }
     window.onload = function(){
