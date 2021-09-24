@@ -1,4 +1,12 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><title></title><script defer="defer" src="runtime.bundle.6eb62c283fbca0f2ad96.js"></script><script defer="defer" src="vendors.bundle.27e89345da0a4265a893.js"></script><script defer="defer" src="main.bundle.e64cfe05a59b33254e93.js"></script></head><style>html {
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,in  itial-scale=1.0,maximum-scale=1.0,user-scalable=no"  name="viewport" />
+    <title></title>
+  </head>
+  <style type="text/css">
+    html {
       height: 100%;
       font-size: 100vw;
     }
@@ -65,6 +73,7 @@
       /* right: 0 !important; */
       top: 0 !important;
       bottom: 0 !important;
+      z-index: 1400 !important;
     }
 
     .zm-big {
@@ -396,6 +405,7 @@
       right: 0;
       margin: auto;
       width: 0.4rem;
+      z-index: 1400 !important;
     }
     .btn-group {
       display: none;
@@ -406,13 +416,14 @@
       position: absolute;
       left: 0;
       right: 0;
+      z-index: 1400;
     }
     .finger {
       width: 0.1rem;
       z-index: 1210;
       bottom: calc(20% - 30px);
       right: 0;
-      left: 0.5rem;
+      left: 0.45rem;
       /* margin: auto; */
       display: none;
       animation-name: fingerJump;
@@ -441,4 +452,46 @@
       30% {width: 0.11rem;}
       40% {width: 0.1rem;}
       100% {width: 0.1rem;}
-    }</style><body><div id="bgTop" class="bg-top bg-default"></div><div id="eyes" class="eyes-box"><p class="welcome-language" id="wl">欢迎来到神券大陆</p></div><div class="prompt-text" id="promptText">已经没有更多卡牌了</div><div id="bgBottom" class="bg-bottom bg-default"></div><div class="radar-box" id="radarBox"></div><div id="btnGroup" class="btn-group img-default"></div><img src="./asset/finger.png" id="finger" class="finger img-default" alt=""></body><script src="./main.js"></script></html>
+    }
+
+    .mantle {
+      background-color: rgb(0 0 0 / 40%);
+      z-index: 1300;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: none;
+    }
+  </style>
+  <body>
+    <!-- 开头背景和睁眼效果 -->
+    <!-- <div id='bg' class='bg bg-default'></div> -->
+    <div id='bgTop' class="bg-top bg-default"></div>
+    <div id="eyes" class="eyes-box">
+      <!-- <div class="eyes"></div>
+      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png" class="bg-map" onload="mapOnload()">
+      <div class="eyes-border"></div> -->
+      <p class="welcome-language" id='wl'>欢迎来到神券大陆</p>
+    </div>
+    <div id='bgBottom' class="bg-bottom bg-default"></div>
+    <div class="prompt-text" id='promptText'>
+      已经没有更多卡牌了
+    </div>
+    <!-- <div id="bg" class="bg bg-default"></div> -->
+    <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
+    <!-- <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()"> -->
+
+    <!-- 雷达 -->
+    <div class="radar-box" id='radarBox'></div>
+    <!-- <div class="radar-box" id='radarBox'>
+      <img src="./asset/radar.png" alt="" class="radar">
+    </div> -->
+    
+    <div id='btnGroup' class="btn-group img-default"></div>
+    <!-- 蒙层 -->
+    <div id='mantle' class="mantle"></div>
+    
+    <img src="./asset/finger.png" id='finger' class="finger img-default" alt="">
+  </body>
+  <script src="./main.js"></script>
+</html>
