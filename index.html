@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><title></title><script defer="defer" src="runtime.bundle.6eb62c283fbca0f2ad96.js"></script><script defer="defer" src="vendors.bundle.5d272250d23dbc8c12ef.js"></script><script defer="defer" src="main.bundle.56cc7710dc5b895a2878.js"></script></head><style>html {
+<!doctype html><html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><title></title><script defer="defer" src="runtime.bundle.6eb62c283fbca0f2ad96.js"></script><script defer="defer" src="vendors.bundle.5d272250d23dbc8c12ef.js"></script><script defer="defer" src="main.bundle.321c2621fe4031681c94.js"></script></head><style>html {
       height: 100%;
       font-size: 100vw;
     }
@@ -406,4 +406,39 @@
       position: absolute;
       left: 0;
       right: 0;
-    }</style><body><div id="bgTop" class="bg-top bg-default"></div><div id="eyes" class="eyes-box"><p class="welcome-language" id="wl">欢迎来到神券大陆</p></div><div class="prompt-text" id="promptText">已经没有更多卡牌了</div><div id="bgBottom" class="bg-bottom bg-default"></div><div class="radar-box" id="radarBox"></div><div id="btnGroup" class="btn-group img-default"></div></body><script src="./main.js"></script></html>
+    }
+    .finger {
+      width: 0.1rem;
+      z-index: 1210;
+      bottom: calc(20% - 30px);
+      right: 0;
+      left: 0.5rem;
+      /* margin: auto; */
+      display: none;
+      animation-name: fingerJump;
+      animation-duration: 1.6s;
+      animation-iteration-count: infinite; /* 动画无数次播放*/
+      animation-timing-function: ease-out;
+    }
+    @keyframes fingerJump {
+      /* 0% {opacity: 1;}
+      10% {opacity: 0;}
+      20% {opacity: 1;}
+      30% {opacity: 0;}
+      40% {opacity: 1;} */
+      0% {width: 0.1rem;}
+      10% {width: 0.11rem;}
+      20% {width: 0.1rem;}
+      30% {width: 0.11rem;}
+      40% {width: 0.1rem;}
+      100% {width: 0.1rem;}
+    }
+    /* Safari 与 Chrome */
+    @-webkit-keyframes fingerJump {
+      0% {width: 0.1rem;}
+      10% {width: 0.11rem;}
+      20% {width: 0.1rem;}
+      30% {width: 0.11rem;}
+      40% {width: 0.1rem;}
+      100% {width: 0.1rem;}
+    }</style><body><div id="bgTop" class="bg-top bg-default"></div><div id="eyes" class="eyes-box"><p class="welcome-language" id="wl">欢迎来到神券大陆</p></div><div class="prompt-text" id="promptText">已经没有更多卡牌了</div><div id="bgBottom" class="bg-bottom bg-default"></div><div class="radar-box" id="radarBox"></div><div id="btnGroup" class="btn-group img-default"></div><img src="./asset/finger.png" id="finger" class="finger img-default" alt=""></body><script src="./main.js"></script></html>
