@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-  </head>
-  <style type="text/css">
-    html {
+<!doctype html><html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><title></title><script defer="defer" src="runtime.bundle.6eb62c283fbca0f2ad96.js"></script><script defer="defer" src="vendors.bundle.5d272250d23dbc8c12ef.js"></script><script defer="defer" src="main.bundle.56cc7710dc5b895a2878.js"></script></head><style>html {
       height: 100%;
       font-size: 100vw;
     }
@@ -24,6 +17,37 @@
     .img-default {
       z-index: 1100;
       position: absolute;
+    }
+
+    .welcome-language {
+      font-size: 0.06rem;
+      line-height: 0.06rem;
+      margin: auto;
+      height: 0.06rem;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      color: #000;
+      font-family: cursive;
+      transition: opacity 2s ease-in-out;
+    }
+    .prompt-text {
+      font-size: 0.06rem;
+      line-height: 0.06rem;
+      margin: auto;
+      height: 0.06rem;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      color: #fff;
+      font-family: cursive;
+      z-index: 1111;
+      transition: opacity 1s ease-in-out;
+      display: none;
     }
     
     .img-pos {
@@ -55,8 +79,8 @@
     }
     .zm-small {
       transition: all 1s ease-in-out;
-      border: 3px solid #fffa68;
-      box-shadow: 2px 0 0 #fffa68;
+      border: 1px solid #fffa68;
+      box-shadow: 0 0 10px #fffa68;
     }
 
     .zm-small-jump {
@@ -102,13 +126,13 @@
 
     .eyes-box {
       /* background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0 / 60%) 66%, #050404 80%, #000); */
-      background-image: radial-gradient(rgb(255 0 0 / 0%) 50%, rgb(0 0 0) 80%);
+      background-image: radial-gradient(rgba(255, 255, 255, 0) 50%, rgb(0 0 0) 70%);
       width: 100%;
       position: absolute;
       height: 0;
       z-index: 1000;
       left: 0;
-      right: 0;
+      right: 0rem;
       top: 0;
       bottom: 0;
       margin: auto;
@@ -310,6 +334,7 @@
       left: 0;
       right: 0;
       margin: auto;
+      width: 0.34rem;
     }
     /* 雷达 */
     .radar {
@@ -370,6 +395,7 @@
       left: 0;
       right: 0;
       margin: auto;
+      width: 0.3rem;
     }
     .btn-group {
       display: none;
@@ -380,40 +406,4 @@
       position: absolute;
       left: 0;
       right: 0;
-    }
-  </style>
-  <body>
-    <!-- 开头背景和睁眼效果 -->
-    <!-- <div id='bg' class='bg bg-default'></div> -->
-    <div id='bgTop' class="bg-top bg-default"></div>
-    <div id="eyes" class="eyes-box">
-      <!-- <div class="eyes"></div>
-      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png" class="bg-map" onload="mapOnload()">
-      <div class="eyes-border"></div> -->
-    </div>
-    <div id='bgBottom' class="bg-bottom bg-default"></div>
-    <!-- <div id="bg" class="bg bg-default"></div> -->
-    <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
-    <!-- <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()"> -->
-
-    <!-- 定位按钮 -->
-    <!-- <img src="./asset/pos.png" alt="" class="pos img-default"> -->
-
-    <!-- 开始动画 -->
-    <!-- <img src='./asset/839af78322450ea0eb6dbb1d19889d831862804f.png' class="leaf" />
-    <img src="./asset/ag.jpg" alt="" class="angel" /> -->
-    <!-- <div class="forest"></div> -->
-
-    <!-- 雷达开始按钮 -->
-    <!-- <img src="./asset/radarBeginImg.png" class="radar-begin img-default" /> -->
-
-    <!-- 雷达 -->
-    <div class="radar-box" id='radarBox'></div>
-    <!-- <div class="radar-box" id='radarBox'>
-      <img src="./asset/radar.png" alt="" class="radar">
-    </div> -->
-    
-    <div id='btnGroup' class="btn-group img-default"></div>
-  </body>
-  <script src="./main.js"></script>
-</html>
+    }</style><body><div id="bgTop" class="bg-top bg-default"></div><div id="eyes" class="eyes-box"><p class="welcome-language" id="wl">欢迎来到神券大陆</p></div><div class="prompt-text" id="promptText">已经没有更多卡牌了</div><div id="bgBottom" class="bg-bottom bg-default"></div><div class="radar-box" id="radarBox"></div><div id="btnGroup" class="btn-group img-default"></div></body><script src="./main.js"></script></html>
