@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width,in  itial-scale=1.0,maximum-scale=1.0,user-scalable=no"  name="viewport" />
-    <title></title>
-  </head>
-  <style type="text/css">
-    html {
+<!doctype html><html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><title></title><script defer="defer" src="runtime.bundle.6eb62c283fbca0f2ad96.js"></script><script defer="defer" src="vendors.bundle.27e89345da0a4265a893.js"></script><script defer="defer" src="main.bundle.d7e458d9b8fe8d2f18b9.js"></script></head><style>html {
       height: 100%;
       font-size: 100vw;
     }
@@ -420,7 +412,7 @@
     }
     .finger {
       width: 0.1rem;
-      z-index: 1210;
+      z-index: 1301;
       bottom: calc(20% - 30px);
       right: 0;
       left: 0.45rem;
@@ -455,43 +447,72 @@
     }
 
     .mantle {
-      background-color: rgb(0 0 0 / 40%);
+      background-color: rgba(0, 0, 0, 0.1);
       z-index: 1300;
       width: 100%;
       height: 100%;
       position: absolute;
       display: none;
     }
-  </style>
-  <body>
-    <!-- 开头背景和睁眼效果 -->
-    <!-- <div id='bg' class='bg bg-default'></div> -->
-    <div id='bgTop' class="bg-top bg-default"></div>
-    <div id="eyes" class="eyes-box">
-      <!-- <div class="eyes"></div>
-      <img src="http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/74eea566cea2ec3f3750add19392bae7.png" class="bg-map" onload="mapOnload()">
-      <div class="eyes-border"></div> -->
-      <p class="welcome-language" id='wl'>欢迎来到神券大陆</p>
-    </div>
-    <div id='bgBottom' class="bg-bottom bg-default"></div>
-    <div class="prompt-text" id='promptText'>
-      已经没有更多卡牌了
-    </div>
-    <!-- <div id="bg" class="bg bg-default"></div> -->
-    <!-- <div id='bgMap' style="z-index: 998;" class="bg-map"></div> -->
-    <!-- <img src='http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/6029b490ab0c992e627806af2aae8693.jpg' class="bg-map" onload="mapOnload()"> -->
 
-    <!-- 雷达 -->
-    <div class="radar-box" id='radarBox'></div>
-    <!-- <div class="radar-box" id='radarBox'>
-      <img src="./asset/radar.png" alt="" class="radar">
-    </div> -->
-    
-    <div id='btnGroup' class="btn-group img-default"></div>
-    <!-- 蒙层 -->
-    <div id='mantle' class="mantle"></div>
-    
-    <img src="./asset/finger.png" id='finger' class="finger img-default" alt="">
-  </body>
-  <script src="./main.js"></script>
-</html>
+    .logo {
+      position: absolute;
+      z-index: 9;
+      width: 0.16rem;
+    }
+    .logo-fino {
+      left: 0.37rem;
+      top: 15%;
+    }
+    .logo-sm {
+      left: 0.09rem;
+      top: 29%;
+    }
+    .logo-senka {
+      left: 0.6rem;
+      top: 32%;
+    }
+    .logo-hand {
+      left: 0.3rem;
+      top: 35%;
+    }
+    .logo-tsubaki {
+      left: 0.77rem;
+      top: 40%;
+    }
+    .logo-kur {
+      left: 0.35rem;
+      top: 50%;
+    }
+    .logo-quir {
+      left: 0.72rem;
+      top: 57%;
+    }
+    .logo-cherie {
+      left: 0.08rem;
+      top: 71%;
+    }
+    .logo-js {
+      left: 0.67rem;
+      top: 73%;
+    }
+    .logo-uno {
+      left: 0.36rem;
+      top: 79%;
+    }
+    .rule {
+      right: 0.02rem;
+      top: 2%;
+    }
+
+    .anchor {
+      width: 0.66rem;
+      position: absolute;
+      display: none;
+      z-index: 1500;
+      left: 0;
+      margin: auto;
+      right: 0;
+      height: 0.57rem;
+      top: 50%;
+    }</style><body><img src="./asset/rule-logo.png" class="logo rule" alt="" id="ruleLogo"><div id="bgTop" class="bg-top bg-default"></div><div id="eyes" class="eyes-box"><p class="welcome-language" id="wl">欢迎来到神券大陆</p></div><div id="bgBottom" class="bg-bottom bg-default"></div><div class="prompt-text" id="promptText">已经没有更多卡牌了</div><div class="radar-box" id="radarBox"></div><div class="anchor" id="anchor"></div><div id="btnGroup" class="btn-group img-default"></div><div id="mantle" class="mantle"></div><img src="./asset/finger.png" id="finger" class="finger img-default" alt=""></body><script src="./main.js"></script></html>
