@@ -349,8 +349,8 @@ function gainTicket(url) {
     event_trigger_mode: "click",
     url: "./index"
   })
-  window.location.href = url
-  // window.open(url)
+  // window.location.href = url
+  window.open(url)
 }
 // 卡牌转到正面
 function rollingCard(h, card, urlObj) {
@@ -711,7 +711,7 @@ function mapOnload() {
 function wink(eyesH, time = 1, isEnd = false) {
   const eyes = document.getElementById("eyes");
   if (!eyes) {
-    alert("eyes dom不存在！");
+    // alert("eyes dom不存在！");
     window.requestAnimationFrame(function () {
       winkBegin();
     });
@@ -805,7 +805,7 @@ window.onload = function () {
   //   const eyes = document.getElementById('eyes')
   //   eyes.style.animationIterationCount = 0
   // }, 8000)
-  alert('onload')
+  alert(window.performance.navigation.type)
   winkBegin();
   loadImg(
     "http://enbrands-2.oss-cn-shanghai.aliyuncs.com/user/cf1d8aeaadf697c38730061650ecc053.png",
@@ -899,6 +899,3 @@ function loadImg(url, classList) {
     };
   });
 }
-window.addEventListener('pageshow', function (e) {
-  alert(e.persisted)
-})
