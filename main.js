@@ -349,8 +349,8 @@ function gainTicket(url) {
     event_trigger_mode: "click",
     url: "./index"
   })
-  // window.location.href = url
-  window.open(url)
+  window.location.href = url
+  // window.open(url)
 }
 // 卡牌转到正面
 function rollingCard(h, card, urlObj) {
